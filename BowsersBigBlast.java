@@ -118,7 +118,8 @@ public class BowsersBigBlast
 		System.out.print("Please enter the amount of players: ");
 		int numOfPlayers = in.nextInt();
 	}
-	
+    
+    //Adds time effect, for visual purposes only
 	public static void delayOneSecond()
 	{
 		try
