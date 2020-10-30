@@ -115,8 +115,79 @@ public class BowsersBigBlast
 		System.out.println("First things first, how many players will be playing?");
 		System.out.println("(Note: There can only be a max of four players per game)");
 		System.out.println("(Note: Any remaining slots will be given to CPUs)");
-		System.out.print("Please enter the amount of players: ");
-		int numOfPlayers = in.nextInt();
+		while (true)
+		{
+			System.out.print("Please enter the amount of players that will play: ");
+			int numOfPlayers = in.nextInt();
+			while (numOfPlayers < 1 || numOfPlayers > 4)
+			{
+				System.out.print("Please enter a valid number: ");
+				numOfPlayers = in.nextInt();
+			}
+			int confirmSelection = 0;
+			switch (numOfPlayers)
+			{
+				case 1:
+					System.out.println("This means there will be " + numOfPlayers + " player and 3 CPUs");
+					delayOneSecond();
+					System.out.print("Correct? (1 - Yes, 2 - No): ");
+					confirmSelection = in.nextInt();
+					if (confirmSelection == 1)
+					{
+						System.out.println("");
+					}
+					else
+					{
+						break;
+					}
+
+				case 2:
+					System.out.println("This means there will be " + numOfPlayers + " players and 2 CPUs");
+					delayOneSecond();
+					System.out.print("Correct? (1 - Yes, 2 - No): ");
+					confirmSelection = in.nextInt();
+					if (confirmSelection == 1)
+					{
+						System.out.println("");
+					}
+					else
+					{
+						break;
+					}
+
+				case 3:
+					System.out.println("This means there will be " + numOfPlayers + " players and 1 CPU");
+					delayOneSecond();
+					System.out.print("Correct? (1 - Yes, 2 - No): ");
+					confirmSelection = in.nextInt();
+					if (confirmSelection == 1)
+					{
+						System.out.println("");
+					}
+					else
+					{
+						break;
+					}
+
+				case 4:
+					System.out.println("This means there will be " + numOfPlayers + " players and 0 CPUs");
+					delayOneSecond();
+					System.out.print("Correct? (1 - Yes, 2 - No): ");
+					confirmSelection = in.nextInt();
+					if (confirmSelection == 1)
+					{
+						System.out.println("");
+					}
+					else
+					{
+						break;
+					}
+
+				default:
+					//Should never reach this case
+					break;
+			}
+		}
 	}
     
     //Adds time effect, for visual purposes only
@@ -130,5 +201,43 @@ public class BowsersBigBlast
 		{
 			Thread.currentThread().interrupt();
 		}
+	}
+
+	//CURRENTLY UNUSED
+	//Checks to see if you entered a valid amount of players
+	public int checkValidSelecion(int isItValid)
+	{
+		while (isItValid < 1 || isItValid > 4)
+		{
+			System.out.print("This is an invalid choice, please select a correct choice: ");
+			isItValid = in.nextInt();
+			if (isItValid >= 1 && isItValid <= 4)
+			{
+				System.out.println("This means there will be " + isItValid + " human player(s) and " + (4 - isItValid) + " CPU(s)");
+				delayOneSecond();
+				System.out.print("Correct? (1 - Yes, 2 - No): ");
+				int confirmSelection = in.nextInt();
+				while (confirmSelection != 1 || confirmSelection != 2)
+				{
+					System.out.print("Please enter a valid number! (1 - Yes, 2 - No): ");
+					confirmSelection = in.nextInt();
+				}
+				if (confirmSelection == 1)
+				{
+					break;
+				}
+				else
+				{
+					System.out.print("Please enter the number of players that will play: ");
+					isItValid = in.nextInt();
+				}
+			}
+			else
+			{
+				//User entered invalid number
+				continue;
+			}
+		}
+		return isItValid;
 	}
 }
