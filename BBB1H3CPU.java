@@ -14,6 +14,8 @@ public class BBB1H3CPU
         String namesOfPlayers[] = new String[4];
         //The following array will contain the order of which players will take their turn
         String orderedNamesOfPlayers[] = new String[4];
+        //The following array will contain the pumps that will be used for the entire game
+        String pumps[] = {"Red","Pink","Yellow","Green","White"};
         System.out.println("Let's play Bowser's Big Blast!");
         BowsersBigBlast.delayOneSecond();
         System.out.println("Each player will take turns pushing down pumps, in hopes they don't push down a");
@@ -132,5 +134,12 @@ public class BBB1H3CPU
             BowsersBigBlast.delayOneSecond();
         }
         return sortedArr;
+    }
+
+    //This is where the first round of the game will take place (4 players)
+    public static String[] roundOne(String[] fourPlayerGroupUnsorted, String[] pumps)
+    {
+        //enter code here..
+        return pumps;
     }
 }
