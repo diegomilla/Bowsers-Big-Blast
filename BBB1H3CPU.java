@@ -51,7 +51,7 @@ public class BBB1H3CPU
         in.nextLine();
         System.out.println(playerOneName + ", " + namesOfPlayers[1] + ", " + namesOfPlayers[2] + ", and " + namesOfPlayers[3] + " step into a large room");
         System.out.println("They see five pumps and one giant Bowser head behind them. From left to right, they see a");
-        System.out.println("red, pink, yellow, white, and green pump. " + orderedNamesOfPlayers[1] + " runs towards the");
+        System.out.println("red, pink, yellow, white, and green pump. " + orderedNamesOfPlayers[0] + " runs towards the");
         System.out.println("pumps and looks around as the other players get in line.");
         BowsersBigBlast.delayOneSecond();
     }
@@ -137,10 +137,136 @@ public class BBB1H3CPU
     }
 
     //This is where the first round of the game will take place (4 players)
-    public static String[] roundOne(String[] fourPlayerGroupUnsorted, String[] pumps)
+    public static String[] roundOne(String[] fourPlayerGroupUnsorted, String[] pumpsR1)
     {
-        //enter code here..
-        //put algorithm here..
-        return pumps;
+        String[] fourPlayerGroupSorted = new String[4];
+        int temp = 0;
+        int myPick;
+        boolean flag = true;
+        int badPump = rand.nextInt(4) + 1;
+        while (flag = true)
+        {
+            System.out.println(fourPlayerGroupUnsorted[temp] + ", which lever will you choose?");
+            System.out.print("Enter the number of the lever of your choice: ");
+            myPick = in.nextInt();
+            if (myPick >= 1 && myPick < 6)
+            {
+                while(pumpsR1[myPick] == null)
+                {
+                    System.out.println("");
+                    System.out.print(fourPlayerGroupUnsorted[temp] + ", this lever has already been pushed down. Choose another unused one: ");
+                    myPick = in.nextInt();
+                    while (myPick > 5 || myPick < 1)
+                    {
+                        System.out.println("");
+                        System.out.print(fourPlayerGroupUnsorted[temp] + ", please choose a valid number to enter: ");
+                        myPick = in.nextInt();
+                    }
+                }
+                pumpsR1[myPick] = null;
+                flag = Check(myPick, badPump, fourPlayerGroupUnsorted, temp);
+                if (flag == true)
+                {
+                    temp++;
+                }
+            }
+            else
+            {
+                System.out.println("");
+                System.out.println("(Please choose a valid number to enter)");
+                System.out.println("");
+            }
+            if (temp > 4)
+            {
+                temp = 1;
+                badPump = rand.nextInt(4) + 1;
+                pumpsR1[0] = "Red";
+                pumpsR1[1] = "Pink";
+                pumpsR1[2] = "Yellow";
+                pumpsR1[3] = "Green";
+                pumpsR1[4] = "White";
+                try
+                {
+                    Thread.sleep(1000);
+                }
+                catch (InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.println("The levers have reset");
+                System.out.println("");
+                //System.out.println("new badLever is " + badLever);
+            }
+        }
+        return fourPlayerGroupSorted;
+    }
+
+
+    public static Boolean Check(int myPickR, int badLeverR, String[] playerName, int playerNumber)
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            if (x == 3)
+            {
+                System.out.println(".");
+            }
+            else
+            {
+                System.out.print(".");
+            }
+            try
+            {
+                Thread.sleep(500);
+            }
+            catch (InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+        }
+        if (myPickR != badLeverR)
+        {
+            System.out.println("");
+            System.out.println("Safe!");
+            System.out.println("");
+            return true;
+        }
+        else
+        {
+            int counter = 3;
+            for (int x = 0; x < 4; x++)
+            {
+                if (x != 3)
+                {
+                    System.out.println("");
+                    System.out.println(counter);
+                    System.out.println("");
+                    counter--;
+                    try
+                    {
+                        Thread.sleep(500);
+                    }
+                    catch (InterruptedException ex)
+                    {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+                else
+                {
+                    System.out.println("BOOM!");
+                    System.out.println("");
+                    System.out.println(playerName[playerNumber] + " has been eliminated.");
+                    System.out.println("");
+                }
+                try
+                {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            return false;
+        }
     }
 }
