@@ -201,7 +201,7 @@ public class BBB1H3CPU
         return fourPlayerGroupSorted;
     }
 
-
+    //This is where a check is made between the player's choice of a pump and the "bad" pump that was randomly selected
     public static Boolean Check(int myPickR, int badLeverR, String[] playerName, int playerNumber)
     {
         for (int x = 0; x < 4; x++)
