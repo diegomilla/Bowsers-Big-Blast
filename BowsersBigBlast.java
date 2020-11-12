@@ -40,7 +40,8 @@ public class BowsersBigBlast
 		{
 			if (beginningChoice == 2)
 			{
-                //Brief history of the game, origins
+				//Brief history of the game, origins
+				System.out.println("");
 				System.out.println("In Japan in 1999, Mario Party 2 was released for the Nintendo 64.");
 				System.out.println("Developed by Hudson Soft and published by Nintendo, this next installment");
 				System.out.println("in the Mario Party game series provided a refined and improved version of");
@@ -74,6 +75,7 @@ public class BowsersBigBlast
 			}
 			else if (beginningChoice == 3)
 			{
+				System.out.println("");
 				System.out.println("The math and complexity behind the game is actually quite simple. Beginning with four players,");
 				System.out.println("called n, there will always be n + 1 pumps. One of these pumps will be given a false flag while");
 				System.out.println("the others are flagged as true. When a player chooses a pump, the program will check to see if");
@@ -101,6 +103,7 @@ public class BowsersBigBlast
 			}
 			else
 			{
+				System.out.println("");
 				System.out.println("Please choose a valid option.");
 				System.out.println("");
 				System.out.println("Option 1 - Play Game");
