@@ -60,14 +60,16 @@ public class BBB1H3CPU
     public static String pickOpponents(String[] CPUNames)
     {
         String opponentName = "default";
-        int select = rand.nextInt(5) + 1;
+        int select = rand.nextInt(6) + 1;
+        select--; //to get a random number from 0 to 5, to use with array
         opponentName = CPUNames[select];
         CPUNames[select] = "null";
         while (true)
         {
             if (opponentName == "null")
             {
-                select = rand.nextInt(5) + 1;
+                select = rand.nextInt(6) + 1;
+                select--;
                 opponentName = CPUNames[select];
                 CPUNames[select] = "null";
             }
@@ -106,23 +108,32 @@ public class BBB1H3CPU
         }
         System.out.println("");
         int temp;
-        for (int y = 1; y <= 4; y++)
+        //NOTE: CODE HAS MAJOR FAULTS FROM HERE ON OUT, MUST FIGURE OUT ISSUE BEFORE CONTINUING
+        for (int y = 0; y < 4; y++)
         {
-            //This creates a variable with getting a random number between 0 and 4 (exclusive)
-            temp = rand.nextInt(3) + 1;
+            //This creates a variable with getting a random number between 1 and 4 (inclusive)
+            temp = rand.nextInt(4) + 1;
+            //temp--;
+            System.out.println("test temp = " + temp);
             //This assigns the first empty spot in the sorted array to the first randomly selected name from the unsorted list
             sortedArr[y] = unsortedArr[temp];
+            System.out.println("first player in sorted array is " + sortedArr[y]);
             //Since that name was already picked, we will null out that entry to prevent repeats when we cycle again
             unsortedArr[temp] = null;
+            System.out.println("test 1 cleared, y = " + y);
             //This if statement ensures that the next check for non-null names will happen on the second cycle
-            if (y > 1)
+            if (y > 0)
             {
                 //This while statement will continue cycling until it picks out a non-null name from the unsorted list to be used
+                System.out.println("test 2 cleared, y = " + y);
                 while (sortedArr[y] == null)
                 {
-                    temp = rand.nextInt(3) + 1;
+                    temp = rand.nextInt(4) + 1;
+                    //temp--;
                     sortedArr[y] = unsortedArr[temp];
                     unsortedArr[temp] = null;
+                    System.out.println("test 3 cleared, temp = " + temp);
+                    System.out.println("player " + (y+1) + " is " + sortedArr[y]);
                 }
             }
         }
@@ -139,22 +150,26 @@ public class BBB1H3CPU
     //This is where the first round of the game will take place (4 players)
     public static String[] roundOne(String[] fourPlayerGroupUnsorted, String[] pumpsR1)
     {
-        String[] fourPlayerGroupSorted = new String[4];
+        String[] fourPlayerGroupSorted = new String[3];
         int temp = 0;
         int myPick;
         boolean flag = true;
         int badPump = rand.nextInt(4) + 1;
         while (flag = true)
         {
-            System.out.println(fourPlayerGroupUnsorted[temp] + ", which lever will you choose?");
-            System.out.print("Enter the number of the lever of your choice: ");
+            System.out.println(fourPlayerGroupUnsorted[temp] + ", which pump will you choose?");
+            for (int x = 0; x < 5; x++)
+            {
+                System.out.println((x + 1) + " = " + pumpsR1[x] + " pump");
+            }
+            System.out.print("Enter the number of the pump of your choice: ");
             myPick = in.nextInt();
             if (myPick >= 1 && myPick < 6)
             {
                 while(pumpsR1[myPick] == null)
                 {
                     System.out.println("");
-                    System.out.print(fourPlayerGroupUnsorted[temp] + ", this lever has already been pushed down. Choose another unused one: ");
+                    System.out.print(fourPlayerGroupUnsorted[temp] + ", this pump has already been pushed down. Choose another unused one: ");
                     myPick = in.nextInt();
                     while (myPick > 5 || myPick < 1)
                     {
@@ -193,7 +208,7 @@ public class BBB1H3CPU
                 {
                     Thread.currentThread().interrupt();
                 }
-                System.out.println("The levers have reset");
+                System.out.println("The pumps have reset");
                 System.out.println("");
                 //System.out.println("new badLever is " + badLever);
             }
