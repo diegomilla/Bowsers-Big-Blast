@@ -49,7 +49,7 @@ public class BBB1H3CPU
         System.out.println("Ready to begin?");
         System.out.println("(press enter to continue)");
         in.nextLine();
-        System.out.println(playerOneName + ", " + namesOfPlayers[1] + ", " + namesOfPlayers[2] + ", and " + namesOfPlayers[3] + " step into a large room");
+        System.out.println(orderedNamesOfPlayers[0] + ", " + orderedNamesOfPlayers[1] + ", " + orderedNamesOfPlayers[2] + ", and " + orderedNamesOfPlayers[3] + " step into a large room");
         System.out.println("They see five pumps and one giant Bowser head behind them. From left to right, they see a");
         System.out.println("red, pink, yellow, white, and green pump. " + orderedNamesOfPlayers[0] + " runs towards the");
         System.out.println("pumps and looks around as the other players get in line.");
@@ -108,38 +108,30 @@ public class BBB1H3CPU
         }
         System.out.println("");
         int temp;
-        //NOTE: CODE HAS MAJOR FAULTS FROM HERE ON OUT, MUST FIGURE OUT ISSUE BEFORE CONTINUING
         for (int y = 0; y < 4; y++)
         {
-            //This creates a variable with getting a random number between 1 and 4 (inclusive)
-            temp = rand.nextInt(4) + 1;
-            //temp--;
-            System.out.println("test temp = " + temp);
+            //This creates a variable with getting a random number, either 0, 1, 2, or 3
+            temp = rand.nextInt(4);
             //This assigns the first empty spot in the sorted array to the first randomly selected name from the unsorted list
             sortedArr[y] = unsortedArr[temp];
-            System.out.println("first player in sorted array is " + sortedArr[y]);
             //Since that name was already picked, we will null out that entry to prevent repeats when we cycle again
             unsortedArr[temp] = null;
-            System.out.println("test 1 cleared, y = " + y);
             //This if statement ensures that the next check for non-null names will happen on the second cycle
             if (y > 0)
             {
                 //This while statement will continue cycling until it picks out a non-null name from the unsorted list to be used
-                System.out.println("test 2 cleared, y = " + y);
                 while (sortedArr[y] == null)
                 {
-                    temp = rand.nextInt(4) + 1;
-                    //temp--;
+                    //Generate another random number since it picked out a nulled out value
+                    temp = rand.nextInt(4);
                     sortedArr[y] = unsortedArr[temp];
                     unsortedArr[temp] = null;
-                    System.out.println("test 3 cleared, temp = " + temp);
-                    System.out.println("player " + (y+1) + " is " + sortedArr[y]);
                 }
             }
         }
         //And now the new list will be printed out to show the user the order of which the players will go
         System.out.println("This is the order in which players will go: ");
-        for (int j = 1; j <= 4; j++)
+        for (int j = 0; j < 4; j++)
         {
             System.out.println(sortedArr[j]);
             BowsersBigBlast.delayOneSecond();
