@@ -6,6 +6,8 @@ public class BBB1H3CPU
 {
     public static Scanner in = new Scanner(System.in);
     public static Random rand = new Random();
+    //The following array will contain the pumps that will be used for the entire game
+    public static String pumps[] = {"Red","Pink","Yellow","Green","White"};
     public static void playGame1H3CPU()
     {
         //This array contains the names of the playable characters from Mario Party 2
@@ -14,8 +16,6 @@ public class BBB1H3CPU
         String namesOfPlayers[] = new String[4];
         //The following array will contain the order of which players will take their turn
         String orderedNamesOfPlayers[] = new String[4];
-        //The following array will contain the pumps that will be used for the entire game
-        String pumps[] = {"Red","Pink","Yellow","Green","White"};
         System.out.println("Let's play Bowser's Big Blast!");
         BowsersBigBlast.delayOneSecond();
         System.out.println("Each player will take turns pushing down pumps, in hopes they don't push down a");
@@ -48,11 +48,21 @@ public class BBB1H3CPU
         BowsersBigBlast.delayOneSecond();
         System.out.println("Ready to begin?");
         System.out.println("(press enter to continue)");
-        in.nextLine();
+        try
+        {
+            System.in.read();
+        }  
+        catch(Exception e)
+        {
+            System.out.println("FATAL ERROR.");
+        }
+        System.out.println("");
         System.out.println(orderedNamesOfPlayers[0] + ", " + orderedNamesOfPlayers[1] + ", " + orderedNamesOfPlayers[2] + ", and " + orderedNamesOfPlayers[3] + " step into a large room");
         System.out.println("They see five pumps and one giant Bowser head behind them. From left to right, they see a");
         System.out.println("red, pink, yellow, white, and green pump. " + orderedNamesOfPlayers[0] + " runs towards the");
         System.out.println("pumps and looks around as the other players get in line.");
+        System.out.println("");
+        roundOne(orderedNamesOfPlayers, pumps);
         BowsersBigBlast.delayOneSecond();
     }
 
@@ -60,8 +70,7 @@ public class BBB1H3CPU
     public static String pickOpponents(String[] CPUNames)
     {
         String opponentName = "default";
-        int select = rand.nextInt(6) + 1;
-        select--; //to get a random number from 0 to 5, to use with array
+        int select = rand.nextInt(6);
         opponentName = CPUNames[select];
         CPUNames[select] = "null";
         while (true)
@@ -146,18 +155,21 @@ public class BBB1H3CPU
         int temp = 0;
         int myPick;
         boolean flag = true;
-        int badPump = rand.nextInt(4) + 1;
+        //Will randomly generate the bad pump to be used to eliminate a player
+        int badPump = rand.nextInt(5);
         while (flag = true)
         {
             System.out.println(fourPlayerGroupUnsorted[temp] + ", which pump will you choose?");
-            for (int x = 0; x < 5; x++)
+            int x;
+            for (x = 0; x < 5; x++)
             {
-                System.out.println((x + 1) + " = " + pumpsR1[x] + " pump");
+                System.out.println((x + 1) + " = " + pumps[x] + " pump");
             }
             System.out.print("Enter the number of the pump of your choice: ");
             myPick = in.nextInt();
             if (myPick >= 1 && myPick < 6)
             {
+                myPick--;
                 while(pumpsR1[myPick] == null)
                 {
                     System.out.println("");
