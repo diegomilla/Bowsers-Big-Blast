@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.Random;
 
+//KEEP IN MIND THIS PROGRAM IS TO BE USED FOR WHEN THERE ARE FOUR HUMAN PLAYERS, MUST MODIFY CODE TO MAKE CPU GUESS
+
 //This is the file that will initiate the game when only one human player is playing, the rest are CPUs
 public class BBB1H3CPU
 {
@@ -8,6 +10,8 @@ public class BBB1H3CPU
     public static Random rand = new Random();
     //The following array will contain the pumps that will be used for the entire game
     public static String pumps[] = {"Red","Pink","Yellow","Green","White"};
+    //Name will be used for a check to determine if a CPU must make a choice or if a player must enter an input
+    public static String playerOneName;
     public static void playGame1H3CPU()
     {
         //This array contains the names of the playable characters from Mario Party 2
@@ -27,7 +31,7 @@ public class BBB1H3CPU
         System.out.println("Remember, the objective of the game is to be the last remaining player! Good luck!");
         BowsersBigBlast.delayOneSecond();
         System.out.print("First, please enter your name: ");
-        String playerOneName = in.next();
+        playerOneName = in.next();
         namesOfPlayers[0] = playerOneName;
         System.out.println("");
         String opponentName = "default";
@@ -62,7 +66,8 @@ public class BBB1H3CPU
         System.out.println("red, pink, yellow, white, and green pump. " + orderedNamesOfPlayers[0] + " runs towards the");
         System.out.println("pumps and looks around as the other players get in line.");
         System.out.println("");
-        roundOne(orderedNamesOfPlayers, pumps);
+        String[] sortedAfterRoundOne = new String[4];
+        sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
         BowsersBigBlast.delayOneSecond();
     }
 
@@ -175,11 +180,13 @@ public class BBB1H3CPU
                     System.out.println("");
                     System.out.print(fourPlayerGroupUnsorted[temp] + ", this pump has already been pushed down. Choose another unused one: ");
                     myPick = in.nextInt();
+                    myPick--;
                     while (myPick > 5 || myPick < 1)
                     {
                         System.out.println("");
                         System.out.print(fourPlayerGroupUnsorted[temp] + ", please choose a valid number to enter: ");
                         myPick = in.nextInt();
+                        myPick--;
                     }
                 }
                 pumpsR1[myPick] = null;
@@ -216,6 +223,12 @@ public class BBB1H3CPU
                 System.out.println("");
                 //System.out.println("new badLever is " + badLever);
             }
+        }
+        //Losing player is nulled out and will not be included into the next round
+        fourPlayerGroupUnsorted[temp] = null;
+        for (int i = 0; i < 4; i++)
+        {
+            fourPlayerGroupSorted[i] = fourPlayerGroupUnsorted[i];
         }
         return fourPlayerGroupSorted;
     }
