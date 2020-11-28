@@ -10,12 +10,12 @@ public class BBB1H3CPU
     public static Random rand = new Random();
     //The following array will contain the pumps that will be used for the entire game
     public static String pumps[] = {"Red","Pink","Yellow","Green","White"};
+    //This array contains the names of the playable characters from Mario Party 2, will be used for entire game
+    public static String CPUNames[] = {"Mario", "Luigi", "Peach", "Yoshi", "Wario", "Donkey Kong"};
     //Name will be used for a check to determine if a CPU must make a choice or if a player must enter an input
     public static String playerOneName;
     public static void playGame1H3CPU()
     {
-        //This array contains the names of the playable characters from Mario Party 2
-        String CPUNames[] = {"Mario", "Luigi", "Peach", "Yoshi", "Wario", "Donkey Kong"};
         //The following array will contain the names of the player and the CPU chosen for the game
         String namesOfPlayers[] = new String[4];
         //The following array will contain the order of which players will take their turn
@@ -40,7 +40,7 @@ public class BBB1H3CPU
         //This is will pick out the names of the remaining players, at random
         for (int x = 2; x < 5; x++)
         {
-            opponentName = pickOpponents(CPUNames);
+            opponentName = pickOpponents(CPUNames, playerOneName);
             System.out.println("Player " + x + ": " + opponentName);
             namesOfPlayers[count] = opponentName;
             count++;
@@ -73,7 +73,7 @@ public class BBB1H3CPU
     }
 
     //This will pick the names of the opponents from a set list in an array, at random
-    public static String pickOpponents(String[] CPUNames)
+    public static String pickOpponents(String[] CPUNames, String playerOnesName)
     {
         String opponentName = "default";
         int select = rand.nextInt(6);
@@ -81,7 +81,7 @@ public class BBB1H3CPU
         while (true)
         {
             //This is to ensure the human player of the game doesn't create a "duplicate" opponent with the same name
-            if (opponentName == playerOneName)
+            if (opponentName == playerOnesName || opponentName == null)
             {
                 //This will null out the duplicate name so that it is no longer going to be under consideration for being picked as a random opponent
                 CPUNames[select] = "null";
@@ -216,7 +216,7 @@ public class BBB1H3CPU
             }
             if (temp > 3)
             {
-                temp = 1;
+                temp = 0;
                 badPump = rand.nextInt(5);
                 pumpsR1[0] = "Red";
                 pumpsR1[1] = "Pink";
@@ -231,10 +231,14 @@ public class BBB1H3CPU
         }
         //Losing player is nulled out and will not be included into the next round
         fourPlayerGroupUnsorted[temp] = null;
+        int j = 0;
         for (int i = 0; i < 4; i++)
         {
-            //add if here to check if value is null or not
-            fourPlayerGroupSorted[i] = fourPlayerGroupUnsorted[i];
+            if(fourPlayerGroupUnsorted[i] != null)
+            {
+                fourPlayerGroupSorted[j] = fourPlayerGroupUnsorted[i];
+                j++;
+            }
         }
         return fourPlayerGroupSorted;
     }

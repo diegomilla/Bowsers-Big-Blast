@@ -25,7 +25,8 @@ public class BowsersBigBlast
         }
         //end of unnecessary part
 
-        //Game actually begins here, options "menu" is displayed for user to choose what they wish to do
+		//Game actually begins here, options "menu" is displayed for user to choose what they wish to do
+		System.out.println("");
 		System.out.println("Welcome to Bowser's Big Blast!");
 		System.out.println("");
 		System.out.println("Please pick an option and then hit enter (type 1 for option 1, 2 for option 2, etc)");
