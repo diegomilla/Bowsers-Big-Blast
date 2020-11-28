@@ -81,7 +81,7 @@ public class BBB1H3CPU
         while (true)
         {
             //This is to ensure the human player of the game doesn't create a "duplicate" opponent with the same name
-            if (opponentName == playerOnesName || opponentName == null)
+            if (opponentName == playerOnesName || opponentName == "null")
             {
                 //This will null out the duplicate name so that it is no longer going to be under consideration for being picked as a random opponent
                 CPUNames[select] = "null";
@@ -234,7 +234,7 @@ public class BBB1H3CPU
         int j = 0;
         for (int i = 0; i < 4; i++)
         {
-            if(fourPlayerGroupUnsorted[i] != null)
+            if(fourPlayerGroupUnsorted[i] != "null")
             {
                 fourPlayerGroupSorted[j] = fourPlayerGroupUnsorted[i];
                 j++;
