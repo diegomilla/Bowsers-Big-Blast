@@ -50,6 +50,7 @@ public class BBB1H3CPU
         //This method call will determine the order of the four players to start the game
         orderedNamesOfPlayers = determineOrderofPlayers(namesOfPlayers);
         BowsersBigBlast.delayOneSecond();
+        System.out.println("");
         System.out.println("Ready to begin?");
         System.out.println("(press enter to continue)");
         try
@@ -77,21 +78,23 @@ public class BBB1H3CPU
         String opponentName = "default";
         int select = rand.nextInt(6);
         opponentName = CPUNames[select];
-        CPUNames[select] = "null";
         while (true)
         {
-            if (opponentName == "null")
+            //This is to ensure the human player of the game doesn't create a "duplicate" opponent with the same name
+            if (opponentName == playerOneName)
             {
-                select = rand.nextInt(6) + 1;
-                select--;
-                opponentName = CPUNames[select];
+                //This will null out the duplicate name so that it is no longer going to be under consideration for being picked as a random opponent
                 CPUNames[select] = "null";
+                select = rand.nextInt(6);
+                opponentName = CPUNames[select];
             }
             else
             {
                 break;
             }
         }
+        CPUNames[select] = "null";
+        //past code here
         return opponentName;
     }
 
@@ -158,11 +161,11 @@ public class BBB1H3CPU
     {
         String[] fourPlayerGroupSorted = new String[3];
         int temp = 0;
-        int myPick;
+        int myPick = 0;
         boolean flag = true;
         //Will randomly generate the bad pump to be used to eliminate a player
         int badPump = rand.nextInt(5);
-        while (flag = true)
+        while (flag == true)
         {
             System.out.println(fourPlayerGroupUnsorted[temp] + ", which pump will you choose?");
             int x;
@@ -171,7 +174,16 @@ public class BBB1H3CPU
                 System.out.println((x + 1) + " = " + pumps[x] + " pump");
             }
             System.out.print("Enter the number of the pump of your choice: ");
-            myPick = in.nextInt();
+            if (fourPlayerGroupUnsorted[temp] == playerOneName)
+            {
+                myPick = in.nextInt();
+            }
+            else
+            {
+                myPick = opponentGuess(pumpsR1);
+                BowsersBigBlast.delayOneSecond();
+                System.out.println(myPick);
+            }
             if (myPick >= 1 && myPick < 6)
             {
                 myPick--;
@@ -202,23 +214,16 @@ public class BBB1H3CPU
                 System.out.println("(Please choose a valid number to enter)");
                 System.out.println("");
             }
-            if (temp > 4)
+            if (temp > 3)
             {
                 temp = 1;
-                badPump = rand.nextInt(4) + 1;
+                badPump = rand.nextInt(5);
                 pumpsR1[0] = "Red";
                 pumpsR1[1] = "Pink";
                 pumpsR1[2] = "Yellow";
                 pumpsR1[3] = "Green";
                 pumpsR1[4] = "White";
-                try
-                {
-                    Thread.sleep(1000);
-                }
-                catch (InterruptedException ex)
-                {
-                    Thread.currentThread().interrupt();
-                }
+                BowsersBigBlast.delayOneSecond();
                 System.out.println("The pumps have reset");
                 System.out.println("");
                 //System.out.println("new badLever is " + badLever);
@@ -228,6 +233,7 @@ public class BBB1H3CPU
         fourPlayerGroupUnsorted[temp] = null;
         for (int i = 0; i < 4; i++)
         {
+            //add if here to check if value is null or not
             fourPlayerGroupSorted[i] = fourPlayerGroupUnsorted[i];
         }
         return fourPlayerGroupSorted;
@@ -300,5 +306,18 @@ public class BBB1H3CPU
             }
             return false;
         }
+    }
+
+    //This method is where the opponent will guess a number and that will be the pump they push down
+    public static int opponentGuess(String[] pumpsR1)
+    {
+        int opponentsGuess = rand.nextInt(5);
+        //In the event the opponent picks a pump that has already been pushed down, it will simply pick another
+        while(pumpsR1[opponentsGuess] == null)
+        {
+            opponentsGuess = rand.nextInt(5);
+        }
+        //We add one because when we display the number to the user, it must match with the key that has the pumps
+        return (opponentsGuess + 1);
     }
 }
