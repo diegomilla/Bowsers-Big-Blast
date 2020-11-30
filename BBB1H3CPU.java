@@ -81,10 +81,10 @@ public class BBB1H3CPU
         while (true)
         {
             //This is to ensure the human player of the game doesn't create a "duplicate" opponent with the same name
-            if (opponentName == playerOnesName || opponentName == "null")
+            if (opponentName.equals(playerOnesName) || opponentName == null)
             {
                 //This will null out the duplicate name so that it is no longer going to be under consideration for being picked as a random opponent
-                CPUNames[select] = "null";
+                CPUNames[select] = null;
                 select = rand.nextInt(6);
                 opponentName = CPUNames[select];
             }
@@ -93,8 +93,7 @@ public class BBB1H3CPU
                 break;
             }
         }
-        CPUNames[select] = "null";
-        //past code here
+        CPUNames[select] = null;
         return opponentName;
     }
 
@@ -171,10 +170,17 @@ public class BBB1H3CPU
             int x;
             for (x = 0; x < 5; x++)
             {
-                System.out.println((x + 1) + " = " + pumps[x] + " pump");
+                if (pumpsR1[x] == null)
+                {
+                    System.out.println("This pump has been pushed down!");
+                }
+                else
+                {
+                    System.out.println((x + 1) + " = " + pumps[x] + " pump");
+                }
             }
             System.out.print("Enter the number of the pump of your choice: ");
-            if (fourPlayerGroupUnsorted[temp] == playerOneName)
+            if (fourPlayerGroupUnsorted[temp].equals(playerOneName))
             {
                 myPick = in.nextInt();
             }
@@ -226,7 +232,8 @@ public class BBB1H3CPU
                 BowsersBigBlast.delayOneSecond();
                 System.out.println("The pumps have reset");
                 System.out.println("");
-                //System.out.println("new badLever is " + badLever);
+                //This line was used for checking purposes
+                //System.out.println("The rigged pump is the " + badPump + " pump");
             }
         }
         //Losing player is nulled out and will not be included into the next round
@@ -234,7 +241,7 @@ public class BBB1H3CPU
         int j = 0;
         for (int i = 0; i < 4; i++)
         {
-            if(fourPlayerGroupUnsorted[i] != "null")
+            if (fourPlayerGroupUnsorted[i] != null)
             {
                 fourPlayerGroupSorted[j] = fourPlayerGroupUnsorted[i];
                 j++;
@@ -295,6 +302,7 @@ public class BBB1H3CPU
                 else
                 {
                     System.out.println("BOOM!");
+                    BowsersBigBlast.delayOneSecond();
                     System.out.println("");
                     System.out.println(playerName[playerNumber] + " has been eliminated.");
                     System.out.println("");
