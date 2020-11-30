@@ -70,6 +70,7 @@ public class BBB1H3CPU
         String[] sortedAfterRoundOne = new String[4];
         sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
         BowsersBigBlast.delayOneSecond();
+        
     }
 
     //This will pick the names of the opponents from a set list in an array, at random
@@ -236,17 +237,43 @@ public class BBB1H3CPU
                 //System.out.println("The rigged pump is the " + badPump + " pump");
             }
         }
+        //This ensures the order remains consistent to the next round, other the first player would have an advantage the whole game
+        switch (temp)
+        {
+            case 0:
+                fourPlayerGroupSorted[0] = fourPlayerGroupUnsorted[1];
+                fourPlayerGroupSorted[1] = fourPlayerGroupUnsorted[2];
+                fourPlayerGroupSorted[2] = fourPlayerGroupUnsorted[3];
+                break;
+
+            case 1:
+                fourPlayerGroupSorted[0] = fourPlayerGroupUnsorted[2];
+                fourPlayerGroupSorted[1] = fourPlayerGroupUnsorted[3];
+                fourPlayerGroupSorted[2] = fourPlayerGroupUnsorted[0];
+                break;
+
+            case 2:
+                fourPlayerGroupSorted[0] = fourPlayerGroupUnsorted[3];
+                fourPlayerGroupSorted[1] = fourPlayerGroupUnsorted[0];
+                fourPlayerGroupSorted[2] = fourPlayerGroupUnsorted[1];
+                break;
+
+            case 3:
+                fourPlayerGroupSorted[0] = fourPlayerGroupUnsorted[0];
+                fourPlayerGroupSorted[1] = fourPlayerGroupUnsorted[1];
+                fourPlayerGroupSorted[2] = fourPlayerGroupUnsorted[2];
+                break;
+
+            default:
+                System.out.println("ERROR.");
+                break;
+        }
+        System.out.println(fourPlayerGroupSorted[0] + ", " + fourPlayerGroupSorted[1] + ", and " + fourPlayerGroupSorted[2] + " look at disbelief as");
+        System.out.println(fourPlayerGroupUnsorted[temp] + " was blown up by the Bowser head, sending them flying out of the room!");
+        System.out.println("A large crane brings another Bowser head and screws it into place where the previous one was.");
+        System.out.println("The game continues as " + fourPlayerGroupSorted[0] + " steps up again ");
         //Losing player is nulled out and will not be included into the next round
         fourPlayerGroupUnsorted[temp] = null;
-        int j = 0;
-        for (int i = 0; i < 4; i++)
-        {
-            if (fourPlayerGroupUnsorted[i] != null)
-            {
-                fourPlayerGroupSorted[j] = fourPlayerGroupUnsorted[i];
-                j++;
-            }
-        }
         return fourPlayerGroupSorted;
     }
 
