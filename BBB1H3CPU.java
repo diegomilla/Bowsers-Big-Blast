@@ -10,6 +10,8 @@ public class BBB1H3CPU
     public static Random rand = new Random();
     //The following array will contain the pumps that will be used for the entire game
     public static String pumps[] = {"Red","Pink","Yellow","Green","White"};
+    //The following array will contain the pumps that will be used for the entire game
+    public static String pumpsF[] = {"Red","Pink","Yellow","Green","White"};
     //This array contains the names of the playable characters from Mario Party 2, will be used for entire game
     public static String CPUNames[] = {"Mario", "Luigi", "Peach", "Yoshi", "Wario", "Donkey Kong"};
     //Name will be used for a check to determine if a CPU must make a choice or if a player must enter an input
@@ -67,8 +69,10 @@ public class BBB1H3CPU
         System.out.println("red, pink, yellow, white, and green pump. " + orderedNamesOfPlayers[0] + " runs towards the");
         System.out.println("pumps and looks around as the other players get in line.");
         System.out.println("");
-        String[] sortedAfterRoundOne = new String[4];
+        String[] sortedAfterRoundOne = new String[3];
         sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
+        String[] sortedAfterRoundTwo = new String[2];
+        sortedAfterRoundTwo = roundTwo(sortedAfterRoundOne, pumps);
         BowsersBigBlast.delayOneSecond();
         
     }
@@ -173,11 +177,11 @@ public class BBB1H3CPU
             {
                 if (pumpsR1[x] == null)
                 {
-                    System.out.println("This pump has been pushed down!");
+                    System.out.println("The " + pumpsF[x] + " pump has already been pushed down!");
                 }
                 else
                 {
-                    System.out.println((x + 1) + " = " + pumps[x] + " pump");
+                    System.out.println((x + 1) + " = " + pumpsF[x] + " pump");
                 }
             }
             System.out.print("Enter the number of the pump of your choice: ");
@@ -270,11 +274,96 @@ public class BBB1H3CPU
         }
         System.out.println(fourPlayerGroupSorted[0] + ", " + fourPlayerGroupSorted[1] + ", and " + fourPlayerGroupSorted[2] + " look at disbelief as");
         System.out.println(fourPlayerGroupUnsorted[temp] + " was blown up by the Bowser head, sending them flying out of the room!");
-        System.out.println("A large crane brings another Bowser head and screws it into place where the previous one was.");
+        System.out.println("A large crane brings another Bowser head and screws it into place where the previous one was. The pumps");
+        System.out.println("also reset, with the exception of the red pump, which has now disappeared, leaving only four options now.");
         System.out.println("The game continues as " + fourPlayerGroupSorted[0] + " steps up again ");
         //Losing player is nulled out and will not be included into the next round
         fourPlayerGroupUnsorted[temp] = null;
         return fourPlayerGroupSorted;
+    }
+
+    //This is where the second round of the game will take place (3 players)
+    public static String[] roundTwo(String[] threePlayerGroupUnsorted, String[] pumpsR2)
+    {
+        String[] threePlayerGroupSorted = new String[2];
+        int temp = 0;
+        int myPick = 0;
+        boolean flag = true;
+        //Will randomly generate the bad pump to be used to eliminate a player
+        int badPump = rand.nextInt(4);
+        while (flag == true)
+        {
+            System.out.println(threePlayerGroupUnsorted[temp] + ", which pump will you choose?");
+            int x;
+            for (x = 0; x < 5; x++)
+            {
+                if (pumpsR2[x] == null)
+                {
+                    System.out.println("The " + pumpsF[x] + " pump has already been pushed down!");
+                }
+                else
+                {
+                    System.out.println((x + 1) + " = " + pumpsF[x] + " pump");
+                }
+            }
+            System.out.print("Enter the number of the pump of your choice: ");
+            if (threePlayerGroupUnsorted[temp].equals(playerOneName))
+            {
+                myPick = in.nextInt();
+            }
+            else
+            {
+                myPick = opponentGuess(pumpsR2);
+                BowsersBigBlast.delayOneSecond();
+                System.out.println(myPick);
+            }
+            if (myPick >= 1 && myPick < 6)
+            {
+                myPick--;
+                while(pumpsR2[myPick] == null)
+                {
+                    System.out.println("");
+                    System.out.print(threePlayerGroupUnsorted[temp] + ", this pump has already been pushed down. Choose another unused one: ");
+                    myPick = in.nextInt();
+                    myPick--;
+                    while (myPick > 5 || myPick < 1)
+                    {
+                        System.out.println("");
+                        System.out.print(threePlayerGroupUnsorted[temp] + ", please choose a valid number to enter: ");
+                        myPick = in.nextInt();
+                        myPick--;
+                    }
+                }
+                pumpsR2[myPick] = null;
+                flag = Check(myPick, badPump, threePlayerGroupUnsorted, temp);
+                if (flag == true)
+                {
+                    temp++;
+                }
+            }
+            else
+            {
+                System.out.println("");
+                System.out.println("(Please choose a valid number to enter)");
+                System.out.println("");
+            }
+            if (temp > 3)
+            {
+                temp = 0;
+                badPump = rand.nextInt(5);
+                pumpsR2[0] = "Red";
+                pumpsR2[1] = "Pink";
+                pumpsR2[2] = "Yellow";
+                pumpsR2[3] = "Green";
+                pumpsR2[4] = "White";
+                BowsersBigBlast.delayOneSecond();
+                System.out.println("The pumps have reset");
+                System.out.println("");
+                //This line was used for checking purposes
+                //System.out.println("The rigged pump is the " + badPump + " pump");
+            }
+        }
+        return threePlayerGroupSorted;
     }
 
     //This is where a check is made between the player's choice of a pump and the "bad" pump that was randomly selected
