@@ -85,19 +85,38 @@ public class BBB1H3CPU
         String opponentName = "default";
         int select = rand.nextInt(6);
         opponentName = CPUNames[select];
+        //This while loop will ensure a name is chosen that will NOT be null, thus letting it get compared to the human player name without an exception
         while (true)
         {
             //This is to ensure the human player of the game doesn't create a "duplicate" opponent with the same name
-            if (opponentName.equals(playerOnesName) || opponentName == null)
+            if (opponentName == null)
             {
-                //This will null out the duplicate name so that it is no longer going to be under consideration for being picked as a random opponent
-                CPUNames[select] = null;
                 select = rand.nextInt(6);
                 opponentName = CPUNames[select];
             }
             else
             {
                 break;
+            }
+        }
+        if (opponentName.equals(playerOnesName))
+        {
+            //This will null out the duplicate name so that it is no longer going to be under consideration for being picked as a random opponent
+            CPUNames[select] = null;
+            opponentName = CPUNames[select];
+            //This while loop will ensure a name is chosen that will NOT be null, thus letting it get compared to the human player name without an exception
+            while (true)
+            {
+                //This is to ensure the human player of the game doesn't create a "duplicate" opponent with the same name
+                if (opponentName == null)
+                {
+                    select = rand.nextInt(6);
+                    opponentName = CPUNames[select];
+                }
+                else
+                {
+                    break;
+                }
             }
         }
         CPUNames[select] = null;
