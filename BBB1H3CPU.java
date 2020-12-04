@@ -11,6 +11,8 @@ public class BBB1H3CPU
     //The following array will contain the pumps that will be used for the entire game
     public static String pumps[] = {"Red","Pink","Yellow","Green","White"};
     //The following array will contain the pumps that will be used for the entire game
+    public static String pumpsR2[] = {"Pink","Yellow","Green","White"};
+    //The following array will contain the pumps that will be used for the entire game
     public static String pumpsF[] = {"Red","Pink","Yellow","Green","White"};
     //This array contains the names of the playable characters from Mario Party 2, will be used for entire game
     public static String CPUNames[] = {"Mario", "Luigi", "Peach", "Yoshi", "Wario", "Donkey Kong"};
@@ -72,7 +74,7 @@ public class BBB1H3CPU
         String[] sortedAfterRoundOne = new String[3];
         sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
         String[] sortedAfterRoundTwo = new String[2];
-        sortedAfterRoundTwo = roundTwo(sortedAfterRoundOne, pumps);
+        sortedAfterRoundTwo = roundTwo(sortedAfterRoundOne, pumpsR2);
         BowsersBigBlast.delayOneSecond();
         
     }
@@ -277,6 +279,7 @@ public class BBB1H3CPU
         System.out.println("A large crane brings another Bowser head and screws it into place where the previous one was. The pumps");
         System.out.println("also reset, with the exception of the red pump, which has now disappeared, leaving only four options now.");
         System.out.println("The game continues as " + fourPlayerGroupSorted[0] + " steps up again ");
+        System.out.println("");
         //Losing player is nulled out and will not be included into the next round
         fourPlayerGroupUnsorted[temp] = null;
         return fourPlayerGroupSorted;
@@ -295,7 +298,7 @@ public class BBB1H3CPU
         {
             System.out.println(threePlayerGroupUnsorted[temp] + ", which pump will you choose?");
             int x;
-            for (x = 0; x < 5; x++)
+            for (x = 0; x < 4; x++)
             {
                 if (pumpsR2[x] == null)
                 {
@@ -303,7 +306,7 @@ public class BBB1H3CPU
                 }
                 else
                 {
-                    System.out.println((x + 1) + " = " + pumpsF[x] + " pump");
+                    System.out.println((x + 2) + " = " + pumpsF[x] + " pump");
                 }
             }
             System.out.print("Enter the number of the pump of your choice: ");
@@ -317,7 +320,7 @@ public class BBB1H3CPU
                 BowsersBigBlast.delayOneSecond();
                 System.out.println(myPick);
             }
-            if (myPick >= 1 && myPick < 6)
+            if (myPick >= 2 && myPick < 6)
             {
                 myPick--;
                 while(pumpsR2[myPick] == null)
@@ -326,7 +329,7 @@ public class BBB1H3CPU
                     System.out.print(threePlayerGroupUnsorted[temp] + ", this pump has already been pushed down. Choose another unused one: ");
                     myPick = in.nextInt();
                     myPick--;
-                    while (myPick > 5 || myPick < 1)
+                    while (myPick > 5 || myPick < 2)
                     {
                         System.out.println("");
                         System.out.print(threePlayerGroupUnsorted[temp] + ", please choose a valid number to enter: ");
@@ -347,15 +350,14 @@ public class BBB1H3CPU
                 System.out.println("(Please choose a valid number to enter)");
                 System.out.println("");
             }
-            if (temp > 3)
+            if (temp > 2)
             {
                 temp = 0;
-                badPump = rand.nextInt(5);
-                pumpsR2[0] = "Red";
-                pumpsR2[1] = "Pink";
-                pumpsR2[2] = "Yellow";
-                pumpsR2[3] = "Green";
-                pumpsR2[4] = "White";
+                badPump = rand.nextInt(4);
+                pumpsR2[0] = "Pink";
+                pumpsR2[1] = "Yellow";
+                pumpsR2[2] = "Green";
+                pumpsR2[3] = "White";
                 BowsersBigBlast.delayOneSecond();
                 System.out.println("The pumps have reset");
                 System.out.println("");
