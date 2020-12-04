@@ -13,6 +13,8 @@ public class BBB1H3CPU
     //The following array will contain the pumps that will be used for the entire game
     public static String pumpsR2[] = {"Pink","Yellow","Green","White"};
     //The following array will contain the pumps that will be used for the entire game
+    public static String pumpsR3[] = {"Pink","Yellow","Green"};
+    //The following array will contain the pumps that will be used for the entire game
     public static String pumpsF[] = {"Red","Pink","Yellow","Green","White"};
     //This array contains the names of the playable characters from Mario Party 2, will be used for entire game
     public static String CPUNames[] = {"Mario", "Luigi", "Peach", "Yoshi", "Wario", "Donkey Kong"};
