@@ -1,8 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
 
-//KEEP IN MIND THIS PROGRAM IS TO BE USED FOR WHEN THERE ARE FOUR HUMAN PLAYERS, MUST MODIFY CODE TO MAKE CPU GUESS
-
 //This is the file that will initiate the game when only one human player is playing, the rest are CPUs
 public class BBB1H3CPU
 {
@@ -386,6 +384,35 @@ public class BBB1H3CPU
                 //System.out.println("The rigged pump is the " + badPump + " pump");
             }
         }
+        switch (temp)
+        {
+            case 0:
+                threePlayerGroupSorted[0] = threePlayerGroupUnsorted[1];
+                threePlayerGroupSorted[1] = threePlayerGroupUnsorted[2];
+                break;
+
+            case 1:
+                threePlayerGroupSorted[0] = threePlayerGroupUnsorted[2];
+                threePlayerGroupSorted[1] = threePlayerGroupUnsorted[0];
+                break;
+
+            case 2:
+                threePlayerGroupSorted[0] = threePlayerGroupUnsorted[0];
+                threePlayerGroupSorted[1] = threePlayerGroupUnsorted[1];
+                break;
+
+            default:
+                System.out.println("ERROR.");
+                break;
+        }
+        System.out.println(threePlayerGroupSorted[0] + " and " + threePlayerGroupSorted[1] + " look in disbelief as " + threePlayerGroupUnsorted[temp]);
+        System.out.println("was blown up by the Bowser head, sending them flying out of the room!");
+        System.out.println("A large crane brings another Bowser head and screws it into place where the previous one was. The pumps");
+        System.out.println("also reset, with the exception of the red and white pump, which have now disappeared, leaving only three options now.");
+        System.out.println("The game continues as " + threePlayerGroupSorted[0] + " steps up again, now in the final round.");
+        System.out.println("");
+        //Losing player is nulled out and will not be included into the next round
+        threePlayerGroupUnsorted[temp] = null;
         return threePlayerGroupSorted;
     }
 
