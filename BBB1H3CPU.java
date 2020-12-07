@@ -75,6 +75,7 @@ public class BBB1H3CPU
         sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
         String[] sortedAfterRoundTwo = new String[2];
         sortedAfterRoundTwo = roundTwo(sortedAfterRoundOne, pumpsR2);
+        roundThree(sortedAfterRoundTwo, pumpsR2);
         BowsersBigBlast.delayOneSecond();
         
     }
@@ -414,6 +415,106 @@ public class BBB1H3CPU
         //Losing player is nulled out and will not be included into the next round
         threePlayerGroupUnsorted[temp] = null;
         return threePlayerGroupSorted;
+    }
+
+    //This is where the second round of the game will take place (3 players)
+    public static void roundThree(String[] twoPlayersRemain, String[] pumpsR3)
+    {
+        int temp = 0;
+        int myPick = 0;
+        boolean flag = true;
+        //Will randomly generate the bad pump to be used to eliminate a player
+        int badPump = rand.nextInt(4);
+        while (flag == true)
+        {
+            System.out.println(twoPlayersRemain[temp] + ", which pump will you choose?");
+            int x;
+            for (x = 0; x < 4; x++)
+            {
+                if (pumpsR2[x] == null)
+                {
+                    System.out.println("The " + pumpsF[x] + " pump has already been pushed down!");
+                }
+                else
+                {
+                    System.out.println((x + 2) + " = " + pumpsF[x] + " pump");
+                }
+            }
+            System.out.print("Enter the number of the pump of your choice: ");
+            if (twoPlayersRemain[temp].equals(playerOneName))
+            {
+                myPick = in.nextInt();
+            }
+            else
+            {
+                myPick = opponentGuess(pumpsR2);
+                BowsersBigBlast.delayOneSecond();
+                System.out.println(myPick);
+            }
+            if (myPick >= 2 && myPick < 6)
+            {
+                myPick--;
+                while(pumpsR2[myPick] == null)
+                {
+                    System.out.println("");
+                    System.out.print(twoPlayersRemain[temp] + ", this pump has already been pushed down. Choose another unused one: ");
+                    myPick = in.nextInt();
+                    myPick--;
+                    while (myPick > 5 || myPick < 2)
+                    {
+                        System.out.println("");
+                        System.out.print(twoPlayersRemain[temp] + ", please choose a valid number to enter: ");
+                        myPick = in.nextInt();
+                        myPick--;
+                    }
+                }
+                pumpsR2[myPick] = null;
+                flag = Check(myPick, badPump, twoPlayersRemain, temp);
+                if (flag == true)
+                {
+                    temp++;
+                }
+            }
+            else
+            {
+                System.out.println("");
+                System.out.println("(Please choose a valid number to enter)");
+                System.out.println("");
+            }
+            if (temp > 1)
+            {
+                temp = 0;
+                badPump = rand.nextInt(4);
+                pumpsR3[0] = "Pink";
+                pumpsR3[1] = "Yellow";
+                pumpsR3[2] = "Green";
+                BowsersBigBlast.delayOneSecond();
+                System.out.println("The pumps have reset");
+                System.out.println("");
+                //This line was used for checking purposes
+                //System.out.println("The rigged pump is the " + badPump + " pump");
+            }
+        }
+        String winner = "default";
+        switch (temp)
+        {
+            case 0:
+                winner = twoPlayersRemain[1];
+                break;
+
+            case 1:
+                winner = twoPlayersRemain[0];
+                break;
+
+            default:
+                System.out.println("You shouldn't get this message - ERROR");
+                break;
+        }
+        System.out.println("As the last Bowser head explodes and sends " + twoPlayersRemain[temp] + " flying,");
+        System.out.println(winner + " breathes a sigh of relief as they are the last player standing.");
+        BowsersBigBlast.delayOneSecond();
+        BowsersBigBlast.delayOneSecond();
+        System.out.println("Congratulations to " + winner + " for beating Bowser's Big Blast!!!");
     }
 
     //This is where a check is made between the player's choice of a pump and the "bad" pump that was randomly selected
