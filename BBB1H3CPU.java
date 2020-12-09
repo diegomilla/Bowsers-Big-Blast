@@ -424,7 +424,7 @@ public class BBB1H3CPU
         int myPick = 0;
         boolean flag = true;
         //Will randomly generate the bad pump to be used to eliminate a player
-        int badPump = rand.nextInt(4);
+        int badPump = rand.nextInt(3);
         while (flag == true)
         {
             System.out.println(twoPlayersRemain[temp] + ", which pump will you choose?");
@@ -484,7 +484,7 @@ public class BBB1H3CPU
             if (temp > 1)
             {
                 temp = 0;
-                badPump = rand.nextInt(4);
+                badPump = rand.nextInt(3);
                 pumpsR3[0] = "Pink";
                 pumpsR3[1] = "Yellow";
                 pumpsR3[2] = "Green";
