@@ -38,8 +38,7 @@ public class BBB2H2CPU
         System.out.print("First, please enter the name of the first player: ");
         playerOneName = in.next();
         namesOfPlayers[0] = playerOneName;
-        System.out.println("Next, let's enter the name of the second player: ");
-        System.out.println("");
+        System.out.print("Next, let's enter the name of the second player: ");
         playerTwoName = in.next();
         namesOfPlayers[1] = playerTwoName;
         System.out.println("");
