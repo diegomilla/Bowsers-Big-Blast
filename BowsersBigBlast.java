@@ -136,47 +136,57 @@ public class BowsersBigBlast
 					delayOneSecond();
 					System.out.print("Correct? (1 - Yes, 2 - No): ");
 					confirmSelection = in.nextInt();
+					while (confirmSelection < 1 || confirmSelection > 2)
+					{
+						System.out.print("please enter a valid response (1 - Yes, 2 - No):");
+						confirmSelection = in.nextInt();
+					}
 					if (confirmSelection == 1)
 					{
-						System.out.println("");
+						BBB1H3CPU.playGame1H3CPU();
 					}
 					else
 					{
 						break;
 					}
-					BBB1H3CPU.playGame1H3CPU();
-					break;
 
 				case 2:
 					System.out.println("This means there will be " + numOfPlayers + " players and 2 CPUs");
 					delayOneSecond();
 					System.out.print("Correct? (1 - Yes, 2 - No): ");
 					confirmSelection = in.nextInt();
+					while (confirmSelection < 1 || confirmSelection > 2)
+					{
+						System.out.print("please enter a valid response (1 - Yes, 2 - No):");
+						confirmSelection = in.nextInt();
+					}
 					if (confirmSelection == 1)
 					{
-						System.out.println("");
+						BBB2H2CPU.playGame2H2CPU();
 					}
 					else
 					{
 						break;
 					}
-					BBB2H2CPU.playGame2H2CPU();
-					break;
 
 				case 3:
 					System.out.println("This means there will be " + numOfPlayers + " players and 1 CPU");
 					delayOneSecond();
 					System.out.print("Correct? (1 - Yes, 2 - No): ");
 					confirmSelection = in.nextInt();
+					while (confirmSelection < 1 || confirmSelection > 2)
+					{
+						System.out.print("please enter a valid response (1 - Yes, 2 - No):");
+						confirmSelection = in.nextInt();
+					}
 					if (confirmSelection == 1)
 					{
-						System.out.println("");
+						BBB3H1CPU.playGame3H1CPU();
 					}
 					else
 					{
 						break;
 					}
-					break;
 
 				case 4:
 					System.out.println("This means there will be " + numOfPlayers + " players and 0 CPUs");
@@ -197,7 +207,6 @@ public class BowsersBigBlast
 					//Should never reach this case
 					break;
 			}
-			break;
 		}
 	}
     
