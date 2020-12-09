@@ -160,6 +160,7 @@ public class BowsersBigBlast
 					{
 						break;
 					}
+					BBB2H2CPU.playGame2H2CPU();
 					break;
 
 				case 3:
