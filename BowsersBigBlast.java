@@ -193,15 +193,19 @@ public class BowsersBigBlast
 					delayOneSecond();
 					System.out.print("Correct? (1 - Yes, 2 - No): ");
 					confirmSelection = in.nextInt();
+					while (confirmSelection < 1 || confirmSelection > 2)
+					{
+						System.out.print("please enter a valid response (1 - Yes, 2 - No):");
+						confirmSelection = in.nextInt();
+					}
 					if (confirmSelection == 1)
 					{
-						System.out.println("");
+						BBB4H0CPU.playGame4H0CPU();
 					}
 					else
 					{
 						break;
 					}
-					break;
 
 				default:
 					//Should never reach this case
