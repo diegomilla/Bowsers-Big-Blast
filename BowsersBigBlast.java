@@ -49,11 +49,11 @@ public class BowsersBigBlast
 				System.out.println("the original game. Each game consisted of four players moving around a board");
 				System.out.println("where the objective was to get as many stars and coins than your opponent. At");
 				System.out.println("the end of each player's turn, they all play a mini-game together and the winner");
-				System.out.println("recieves coins at the end to use for next turn. There were a plethora of mini-games");
+				System.out.println("receives coins at the end to use for next turn. There were a plethora of mini-games");
 				System.out.println("in Mario Party 2, but one reallys stands out. Subsequently titled the same as this");
 				System.out.println("program, Bowser's Big Blast was the mini-game that inspired this program. The premise");
 				System.out.println("is four players take turns pushing down pumps, until one remains. With each iteration,");
-				System.out.println("the number of pumps and players goes down until two players and three pumps remaining.");
+				System.out.println("the number of pumps and players goes down until there are two players and three pumps remaining.");
 				System.out.println("The game can be very short or long, depending if the \"bad\" pump is pushed down or avoided.");
 				System.out.println("With each player that gets eliminated, the pressure and intensity grows! In the end, it all");
 				System.out.println("rides on luck. Last player standing is deemed the winner! Good luck!");
