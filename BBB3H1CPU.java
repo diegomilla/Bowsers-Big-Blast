@@ -42,7 +42,7 @@ public class BBB3H1CPU
         System.out.print("Next, let's enter the name of the second player: ");
         playerTwoName = in.next();
         namesOfPlayers[1] = playerTwoName;
-        System.out.println("Now, we should enter the name of the third player: ");
+        System.out.print("Now, we should enter the name of the third player: ");
         playerThreeName = in.next();
         namesOfPlayers[2] = playerThreeName;
         System.out.println("");

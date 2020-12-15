@@ -43,7 +43,7 @@ public class BBB4H0CPU
         System.out.print("Next, let's enter the name of the second player: ");
         playerTwoName = in.next();
         namesOfPlayers[1] = playerTwoName;
-        System.out.println("Now, we should enter the name of the third player: ");
+        System.out.print("Now, we should enter the name of the third player: ");
         playerThreeName = in.next();
         namesOfPlayers[2] = playerThreeName;
         System.out.print("Finally, let's enter the name of the fourth player: ");
@@ -208,17 +208,7 @@ public class BBB4H0CPU
                     System.out.println((x + 1) + " = " + pumpsF[x] + " pump");
                 }
             }
-            System.out.print("Enter the number of the pump of your choice: ");
-            if (fourPlayerGroupUnsorted[temp].equals(playerOneName) || fourPlayerGroupUnsorted[temp].equals(playerTwoName) || fourPlayerGroupUnsorted[temp].equals(playerThreeName))
-            {
-                myPick = in.nextInt();
-            }
-            else
-            {
-                myPick = opponentGuess(pumpsR1);
-                BowsersBigBlast.delayOneSecond();
-                System.out.println(myPick);
-            }
+            myPick = in.nextInt();
             if (myPick >= 1 && myPick < 6)
             {
                 myPick--;
@@ -332,16 +322,7 @@ public class BBB4H0CPU
                 }
             }
             System.out.print("Enter the number of the pump of your choice: ");
-            if (threePlayerGroupUnsorted[temp].equals(playerOneName) || threePlayerGroupUnsorted[temp].equals(playerTwoName) || threePlayerGroupUnsorted[temp].equals(playerThreeName))
-            {
-                myPick = in.nextInt();
-            }
-            else
-            {
-                myPick = opponentGuess(pumpsR2);
-                BowsersBigBlast.delayOneSecond();
-                System.out.println(myPick);
-            }
+            myPick = in.nextInt();
             if (myPick >= 2 && myPick < 6)
             {
                 myPick--;
@@ -443,16 +424,7 @@ public class BBB4H0CPU
                 }
             }
             System.out.print("Enter the number of the pump of your choice: ");
-            if (twoPlayersRemain[temp].equals(playerOneName) || twoPlayersRemain[temp].equals(playerTwoName) || twoPlayersRemain[temp].equals(playerThreeName))
-            {
-                myPick = in.nextInt();
-            }
-            else
-            {
-                myPick = opponentGuess(pumpsR2);
-                BowsersBigBlast.delayOneSecond();
-                System.out.println(myPick);
-            }
+            myPick = in.nextInt();
             if (myPick >= 2 && myPick < 5)
             {
                 myPick--;
