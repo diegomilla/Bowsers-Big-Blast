@@ -75,7 +75,7 @@ public class BBB1H3CPU
         sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
         String[] sortedAfterRoundTwo = new String[2];
         sortedAfterRoundTwo = roundTwo(sortedAfterRoundOne, pumpsR2);
-        roundThree(sortedAfterRoundTwo, pumpsR2);
+        roundThree(sortedAfterRoundTwo, pumpsR3);
         BowsersBigBlast.delayOneSecond();
         
     }
@@ -201,11 +201,11 @@ public class BBB1H3CPU
             {
                 if (pumpsR1[x] == null)
                 {
-                    System.out.println("The " + pumpsR1[x] + " pump has already been pushed down!");
+                    System.out.println("The " + pumpsF[x] + " pump has already been pushed down!");
                 }
                 else
                 {
-                    System.out.println((x + 1) + " = " + pumpsR1[x] + " pump");
+                    System.out.println((x + 1) + " = " + pumpsF[x] + " pump");
                 }
             }
             System.out.print("Enter the number of the pump of your choice: ");
@@ -311,6 +311,10 @@ public class BBB1H3CPU
     public static String[] roundTwo(String[] threePlayerGroupUnsorted, String[] pumpsR2)
     {
         String[] threePlayerGroupSorted = new String[2];
+        pumpsF[0] = "Pink";
+        pumpsF[1] = "Yellow";
+        pumpsF[2] = "Green";
+        pumpsF[3] = "White";
         int roundNum = 2;
         int temp = 0;
         int myPick = 0;
@@ -325,11 +329,11 @@ public class BBB1H3CPU
             {
                 if (pumpsR2[x] == null)
                 {
-                    System.out.println("The " + pumpsR2[x] + " pump has already been pushed down!");
+                    System.out.println("The " + pumpsF[x] + " pump has already been pushed down!");
                 }
                 else
                 {
-                    System.out.println((x + 2) + " = " + pumpsR2[x] + " pump");
+                    System.out.println((x + 2) + " = " + pumpsF[x] + " pump");
                 }
             }
             System.out.print("Enter the number of the pump of your choice: ");
@@ -420,9 +424,12 @@ public class BBB1H3CPU
         return threePlayerGroupSorted;
     }
 
-    //This is where the second round of the game will take place (3 players)
+    //This is where the third round of the game will take place
     public static void roundThree(String[] twoPlayersRemain, String[] pumpsR3)
     {
+        pumpsF[0] = "Pink";
+        pumpsF[1] = "Yellow";
+        pumpsF[2] = "Green";
         int roundNum = 3;
         int temp = 0;
         int myPick = 0;
@@ -433,7 +440,7 @@ public class BBB1H3CPU
         {
             System.out.println(twoPlayersRemain[temp] + ", which pump will you choose?");
             int x;
-            for (x = 0; x < 4; x++)
+            for (x = 0; x < 3; x++)
             {
                 if (pumpsR3[x] == null)
                 {
@@ -604,28 +611,28 @@ public class BBB1H3CPU
                 {
                     opponentsGuess = rand.nextInt(5);
                 }
-                break;
+                return (opponentsGuess + 1);
 
             case 2:
                 opponentsGuess = rand.nextInt(4);
                 while(pumpsRx[opponentsGuess] == null)
                 {
-                    opponentsGuess = rand.nextInt(5);
+                    opponentsGuess = rand.nextInt(4);
                 }
-                break;
+                return (opponentsGuess + 2);
 
             case 3:
                 opponentsGuess = rand.nextInt(3);
                 while(pumpsRx[opponentsGuess] == null)
                 {
-                    opponentsGuess = rand.nextInt(5);
+                    opponentsGuess = rand.nextInt(3);
                 }
-                break;
+                return (opponentsGuess + 2);
             
             default:
-                break;
+                //Should never reach this case
+                return opponentsGuess;
         }
-        //We add one because when we display the number to the user, it must match with the key that has the pumps
-        return (opponentsGuess + 1);
+        //We add one/two because when we display the number to the user, it must match with the key that has the pumps
     }
 }
