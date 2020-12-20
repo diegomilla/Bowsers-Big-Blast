@@ -443,7 +443,7 @@ public class BBB2H2CPU
         {
             System.out.println(twoPlayersRemain[temp] + ", which pump will you choose?");
             int x;
-            for (x = 0; x < 4; x++)
+            for (x = 0; x < 3; x++)
             {
                 if (pumpsR3[x] == null)
                 {
