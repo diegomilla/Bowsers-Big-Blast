@@ -351,19 +351,19 @@ public class BBB3H1CPU
             }
             if (myPick >= 2 && myPick < 6)
             {
-                myPick--;
+                myPick = myPick - 2;
                 while(pumpsR2[myPick] == null)
                 {
                     System.out.println("");
                     System.out.print(threePlayerGroupUnsorted[temp] + ", this pump has already been pushed down. Choose another unused one: ");
                     myPick = in.nextInt();
-                    myPick--;
+                    myPick = myPick - 2;
                     while (myPick > 5 || myPick < 2)
                     {
                         System.out.println("");
                         System.out.print(threePlayerGroupUnsorted[temp] + ", please choose a valid number to enter: ");
                         myPick = in.nextInt();
-                        myPick--;
+                        myPick = myPick - 2;
                     }
                 }
                 pumpsR2[myPick] = null;
@@ -466,19 +466,19 @@ public class BBB3H1CPU
             }
             if (myPick >= 2 && myPick < 5)
             {
-                myPick--;
+                myPick = myPick - 2;
                 while(pumpsR3[myPick] == null)
                 {
                     System.out.println("");
                     System.out.print(twoPlayersRemain[temp] + ", this pump has already been pushed down. Choose another unused one: ");
                     myPick = in.nextInt();
-                    myPick--;
+                    myPick = myPick - 2;
                     while (myPick > 4 || myPick < 2)
                     {
                         System.out.println("");
                         System.out.print(twoPlayersRemain[temp] + ", please choose a valid number to enter: ");
                         myPick = in.nextInt();
-                        myPick--;
+                        myPick = myPick - 2;
                     }
                 }
                 pumpsR3[myPick] = null;
