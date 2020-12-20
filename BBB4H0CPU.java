@@ -77,7 +77,7 @@ public class BBB4H0CPU
         sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
         String[] sortedAfterRoundTwo = new String[2];
         sortedAfterRoundTwo = roundTwo(sortedAfterRoundOne, pumpsR2);
-        roundThree(sortedAfterRoundTwo, pumpsR2);
+        roundThree(sortedAfterRoundTwo, pumpsR3);
         BowsersBigBlast.delayOneSecond();
         
     }
@@ -301,6 +301,10 @@ public class BBB4H0CPU
     public static String[] roundTwo(String[] threePlayerGroupUnsorted, String[] pumpsR2)
     {
         String[] threePlayerGroupSorted = new String[2];
+        pumpsF[0] = "Pink";
+        pumpsF[1] = "Yellow";
+        pumpsF[2] = "Green";
+        pumpsF[3] = "White";
         int temp = 0;
         int myPick = 0;
         boolean flag = true;
@@ -403,6 +407,9 @@ public class BBB4H0CPU
     //This is where the second round of the game will take place (3 players)
     public static void roundThree(String[] twoPlayersRemain, String[] pumpsR3)
     {
+        pumpsF[0] = "Pink";
+        pumpsF[1] = "Yellow";
+        pumpsF[2] = "Green";
         int temp = 0;
         int myPick = 0;
         boolean flag = true;
@@ -414,7 +421,7 @@ public class BBB4H0CPU
             int x;
             for (x = 0; x < 4; x++)
             {
-                if (pumpsR2[x] == null)
+                if (pumpsR3[x] == null)
                 {
                     System.out.println("The " + pumpsF[x] + " pump has already been pushed down!");
                 }
@@ -428,7 +435,7 @@ public class BBB4H0CPU
             if (myPick >= 2 && myPick < 5)
             {
                 myPick--;
-                while(pumpsR2[myPick] == null)
+                while(pumpsR3[myPick] == null)
                 {
                     System.out.println("");
                     System.out.print(twoPlayersRemain[temp] + ", this pump has already been pushed down. Choose another unused one: ");
@@ -442,7 +449,7 @@ public class BBB4H0CPU
                         myPick--;
                     }
                 }
-                pumpsR2[myPick] = null;
+                pumpsR3[myPick] = null;
                 flag = Check(myPick, badPump, twoPlayersRemain, temp);
                 if (flag == true)
                 {
@@ -562,6 +569,7 @@ public class BBB4H0CPU
     }
 
     //This method is where the opponent will guess a number and that will be the pump they push down
+    //Unused method in this game mode
     public static int opponentGuess(String[] pumpsR1)
     {
         int opponentsGuess = rand.nextInt(5);

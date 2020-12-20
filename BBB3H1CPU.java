@@ -78,7 +78,7 @@ public class BBB3H1CPU
         sortedAfterRoundOne = roundOne(orderedNamesOfPlayers, pumps);
         String[] sortedAfterRoundTwo = new String[2];
         sortedAfterRoundTwo = roundTwo(sortedAfterRoundOne, pumpsR2);
-        roundThree(sortedAfterRoundTwo, pumpsR2);
+        roundThree(sortedAfterRoundTwo, pumpsR3);
         BowsersBigBlast.delayOneSecond();
         
     }
@@ -189,6 +189,7 @@ public class BBB3H1CPU
     public static String[] roundOne(String[] fourPlayerGroupUnsorted, String[] pumpsR1)
     {
         String[] fourPlayerGroupSorted = new String[3];
+        int roundNum = 1;
         int temp = 0;
         int myPick = 0;
         boolean flag = true;
@@ -216,7 +217,7 @@ public class BBB3H1CPU
             }
             else
             {
-                myPick = opponentGuess(pumpsR1);
+                myPick = opponentGuess(pumpsR1, roundNum);
                 BowsersBigBlast.delayOneSecond();
                 System.out.println(myPick);
             }
@@ -312,6 +313,11 @@ public class BBB3H1CPU
     public static String[] roundTwo(String[] threePlayerGroupUnsorted, String[] pumpsR2)
     {
         String[] threePlayerGroupSorted = new String[2];
+        pumpsF[0] = "Pink";
+        pumpsF[1] = "Yellow";
+        pumpsF[2] = "Green";
+        pumpsF[3] = "White";
+        int roundNum = 2;
         int temp = 0;
         int myPick = 0;
         boolean flag = true;
@@ -339,7 +345,7 @@ public class BBB3H1CPU
             }
             else
             {
-                myPick = opponentGuess(pumpsR2);
+                myPick = opponentGuess(pumpsR2, roundNum);
                 BowsersBigBlast.delayOneSecond();
                 System.out.println(myPick);
             }
@@ -423,6 +429,10 @@ public class BBB3H1CPU
     //This is where the second round of the game will take place (3 players)
     public static void roundThree(String[] twoPlayersRemain, String[] pumpsR3)
     {
+        pumpsF[0] = "Pink";
+        pumpsF[1] = "Yellow";
+        pumpsF[2] = "Green";
+        int roundNum = 3;
         int temp = 0;
         int myPick = 0;
         boolean flag = true;
@@ -434,7 +444,7 @@ public class BBB3H1CPU
             int x;
             for (x = 0; x < 4; x++)
             {
-                if (pumpsR2[x] == null)
+                if (pumpsR3[x] == null)
                 {
                     System.out.println("The " + pumpsF[x] + " pump has already been pushed down!");
                 }
@@ -450,14 +460,14 @@ public class BBB3H1CPU
             }
             else
             {
-                myPick = opponentGuess(pumpsR2);
+                myPick = opponentGuess(pumpsR3, roundNum);
                 BowsersBigBlast.delayOneSecond();
                 System.out.println(myPick);
             }
             if (myPick >= 2 && myPick < 5)
             {
                 myPick--;
-                while(pumpsR2[myPick] == null)
+                while(pumpsR3[myPick] == null)
                 {
                     System.out.println("");
                     System.out.print(twoPlayersRemain[temp] + ", this pump has already been pushed down. Choose another unused one: ");
@@ -471,7 +481,7 @@ public class BBB3H1CPU
                         myPick--;
                     }
                 }
-                pumpsR2[myPick] = null;
+                pumpsR3[myPick] = null;
                 flag = Check(myPick, badPump, twoPlayersRemain, temp);
                 if (flag == true)
                 {
@@ -591,15 +601,40 @@ public class BBB3H1CPU
     }
 
     //This method is where the opponent will guess a number and that will be the pump they push down
-    public static int opponentGuess(String[] pumpsR1)
+    public static int opponentGuess(String[] pumpsRx, int roundNum)
     {
-        int opponentsGuess = rand.nextInt(5);
-        //In the event the opponent picks a pump that has already been pushed down, it will simply pick another
-        while(pumpsR1[opponentsGuess] == null)
+        int opponentsGuess = 0;
+        switch(roundNum)
         {
-            opponentsGuess = rand.nextInt(5);
+            case 1:
+                //In the event the opponent picks a pump that has already been pushed down, it will simply pick another
+                opponentsGuess = rand.nextInt(5);
+                while(pumpsRx[opponentsGuess] == null)
+                {
+                    opponentsGuess = rand.nextInt(5);
+                }
+                return (opponentsGuess + 1);
+
+            case 2:
+                opponentsGuess = rand.nextInt(4);
+                while(pumpsRx[opponentsGuess] == null)
+                {
+                    opponentsGuess = rand.nextInt(4);
+                }
+                return (opponentsGuess + 2);
+
+            case 3:
+                opponentsGuess = rand.nextInt(3);
+                while(pumpsRx[opponentsGuess] == null)
+                {
+                    opponentsGuess = rand.nextInt(3);
+                }
+                return (opponentsGuess + 2);
+            
+            default:
+                //Should never reach this case
+                return opponentsGuess;
         }
-        //We add one because when we display the number to the user, it must match with the key that has the pumps
-        return (opponentsGuess + 1);
+        //We add one/two because when we display the number to the user, it must match with the key that has the pumps
     }
 }
