@@ -215,6 +215,7 @@ public class BowsersBigBlast
 					//Should never reach this case
 					break;
 			}
+			break;
 		}
 	}
     
