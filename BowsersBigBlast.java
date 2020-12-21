@@ -231,42 +231,4 @@ public class BowsersBigBlast
 			Thread.currentThread().interrupt();
 		}
 	}
-
-	//CURRENTLY UNUSED
-	//Checks to see if you entered a valid amount of players
-	public int checkValidSelecion(int isItValid)
-	{
-		while (isItValid < 1 || isItValid > 4)
-		{
-			System.out.print("This is an invalid choice, please select a correct choice: ");
-			isItValid = in.nextInt();
-			if (isItValid >= 1 && isItValid <= 4)
-			{
-				System.out.println("This means there will be " + isItValid + " human player(s) and " + (4 - isItValid) + " CPU(s)");
-				delayOneSecond();
-				System.out.print("Correct? (1 - Yes, 2 - No): ");
-				int confirmSelection = in.nextInt();
-				while (confirmSelection != 1 || confirmSelection != 2)
-				{
-					System.out.print("Please enter a valid number! (1 - Yes, 2 - No): ");
-					confirmSelection = in.nextInt();
-				}
-				if (confirmSelection == 1)
-				{
-					break;
-				}
-				else
-				{
-					System.out.print("Please enter the number of players that will play: ");
-					isItValid = in.nextInt();
-				}
-			}
-			else
-			{
-				//User entered invalid number
-				continue;
-			}
-		}
-		return isItValid;
-	}
 }
