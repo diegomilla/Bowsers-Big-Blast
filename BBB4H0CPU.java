@@ -27,6 +27,7 @@ public class BBB4H0CPU
         String namesOfPlayers[] = new String[4];
         //The following array will contain the order of which players will take their turn
         String orderedNamesOfPlayers[] = new String[4];
+        System.out.println("");
         System.out.println("Let's play Bowser's Big Blast!");
         BowsersBigBlast.delayOneSecond();
         System.out.println("Each player will take turns pushing down pumps, in hopes they don't push down a");
@@ -37,6 +38,7 @@ public class BBB4H0CPU
         BowsersBigBlast.delayOneSecond();
         System.out.println("Remember, the objective of the game is to be the last remaining player! Good luck!");
         BowsersBigBlast.delayOneSecond();
+        System.out.println("");
         System.out.print("First, please enter the name of the first player: ");
         playerOneName = in.next();
         namesOfPlayers[0] = playerOneName;
@@ -286,12 +288,16 @@ public class BBB4H0CPU
                 System.out.println("ERROR.");
                 break;
         }
+        BowsersBigBlast.delayOneSecond();
+        BowsersBigBlast.delayOneSecond();
         System.out.println(fourPlayerGroupSorted[0] + ", " + fourPlayerGroupSorted[1] + ", and " + fourPlayerGroupSorted[2] + " look at disbelief as");
         System.out.println(fourPlayerGroupUnsorted[temp] + " was blown up by the Bowser head, sending them flying out of the room!");
         System.out.println("A large crane brings another Bowser head and screws it into place where the previous one was. The pumps");
         System.out.println("also reset, with the exception of the red pump, which has now disappeared, leaving only four options now.");
         System.out.println("The game continues as " + fourPlayerGroupSorted[0] + " steps up again ");
         System.out.println("");
+        BowsersBigBlast.delayOneSecond();
+        BowsersBigBlast.delayOneSecond();
         //Losing player is nulled out and will not be included into the next round
         fourPlayerGroupUnsorted[temp] = null;
         return fourPlayerGroupSorted;
@@ -393,12 +399,16 @@ public class BBB4H0CPU
                 System.out.println("ERROR.");
                 break;
         }
+        BowsersBigBlast.delayOneSecond();
+        BowsersBigBlast.delayOneSecond();
         System.out.println(threePlayerGroupSorted[0] + " and " + threePlayerGroupSorted[1] + " look in disbelief as " + threePlayerGroupUnsorted[temp]);
         System.out.println("was blown up by the Bowser head, sending them flying out of the room!");
         System.out.println("A large crane brings another Bowser head and screws it into place where the previous one was. The pumps");
         System.out.println("also reset, with the exception of the red and white pump, which have now disappeared, leaving only three options now.");
         System.out.println("The game continues as " + threePlayerGroupSorted[0] + " steps up again, now in the final round.");
         System.out.println("");
+        BowsersBigBlast.delayOneSecond();
+        BowsersBigBlast.delayOneSecond();
         //Losing player is nulled out and will not be included into the next round
         threePlayerGroupUnsorted[temp] = null;
         return threePlayerGroupSorted;
@@ -491,6 +501,8 @@ public class BBB4H0CPU
                 System.out.println("You shouldn't get this message - ERROR");
                 break;
         }
+        BowsersBigBlast.delayOneSecond();
+        BowsersBigBlast.delayOneSecond();
         System.out.println("As the last Bowser head explodes and sends " + twoPlayersRemain[temp] + " flying,");
         System.out.println(winner + " breathes a sigh of relief as they are the last player standing.");
         BowsersBigBlast.delayOneSecond();
@@ -525,6 +537,7 @@ public class BBB4H0CPU
             System.out.println("");
             System.out.println("Safe!");
             System.out.println("");
+            BowsersBigBlast.delayOneSecond();
             return true;
         }
         else
